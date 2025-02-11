@@ -7,6 +7,101 @@
     <title>CV maker 1.0</title>
 </head>
 <body>
+
+    <div id="cv_maker_ui">
+        <form id="cv_properties">
+            <div id="cv_parts_table">
+                <div id="cv_parts_header">
+                    <div id="sidebar_header" class="cv_parts_table_header">
+                        <p class="cv_parts_header_font">Sidebar Content</p>
+                    </div>
+                    <div id="main_header" class="cv_parts_table_header">
+                        <p class="cv_parts_header_font">Main Content</p>
+                    </div>
+                </div>
+                <div id="cv_parts_content">
+                    <div class="candrag" id="cv_parts_sidebar">
+                        <div class="sidebar_column">
+                            <div id="cv_parts_portrait" class="cv_parts_cb_style">
+                                <input id="cb_portrait" name="cb_portrait" type="checkbox" checked>
+                                <label for="cb_portrait">With Picture <img src="" alt="locked"></label>
+                                
+                            </div>
+                        </div>
+                        <div id="cv_part_drag_1" class="candrag sidebar_column" draggable="true">
+                            <div id="cv_parts_contact" class="cv_parts_cb_style">
+                                <input id="cb_contact" name="cb_contact" type="checkbox" checked>
+                                <label for="cb_contact">Contact</label>
+                            </div>
+                        </div>
+                        <div id="cv_part_drag_2" class="candrag sidebar_column" draggable="true">
+                            <div id="cv_parts_t_skills" class="cv_parts_cb_style">
+                                <input id="cb_t_skills" name="cb_t_skills" type="checkbox" checked>
+                                <label for="cb_t_skills">Technical Skills</label>
+                            </div>
+                        </div>
+                        <div id="cv_part_drag_3" class="candrag sidebar_column" draggable="true">
+                            <div id="cv_parts_s_skills" class="cv_parts_cb_style">
+                                <input id="cb_soft_skills" name="cb_soft_skills" type="checkbox" checked>
+                                <label for="cb_soft_skills">Soft Skills</label>
+                            </div>
+                        </div>
+                        <div id="cv_part_drag_4" class="candrag sidebar_column" draggable="true">
+                            <div id="cv_parts_hobbies" class="cv_parts_cb_style">
+                                <input id="cb_hobbies" name="cb_hobbies" type="checkbox" checked>
+                                <label for="cb_hobbies">Hobbies</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="candrag" id="cv_parts_main">
+                        <div class="main_column">
+                            <div id="cv_parts_introduction" class="cv_parts_cb_style">
+                                <input id="cb_introduction" name="cb_introduction" type="checkbox" checked>
+                                <label for="cb_introduction">Introduction <img src="" alt="locked"></label>
+                                
+                            </div>
+                        </div>
+                        <div id="cv_part_drag_5" class="candrag main_column" draggable="true">
+                            <div id="cv_parts_experiences" class="cv_parts_cb_style">
+                                <input id="cb_experiences" name="cb_experiences" type="checkbox" checked>
+                                <label for="cb_experiences">Experiences</label>
+                            </div>
+                        </div>
+                        <div id="cv_part_drag_6" class="candrag main_column" draggable="true">
+                            <div id="cv_parts_projects" class="cv_parts_cb_style">
+                                <input id="cb_projects" name="cb_projects" type="checkbox" checked>
+                                <label for="cb_projects">Projects</label>
+                            </div>
+                        </div>
+                        <div id="cv_part_drag_7" class="candrag main_column" draggable="true">
+                            <div id="cv_parts_schools" class="cv_parts_cb_style">
+                                <input id="cb_schools" name="cb_schools" type="checkbox" checked>
+                                <label for="cb_schools">Schools</label>
+                            </div>
+                        </div>
+                        <div id="cv_part_drag_8" class="candrag main_column" draggable="true">
+                            <div id="cv_parts_certifications" class="cv_parts_cb_style">
+                                <input id="cb_certifications" name="cb_certifications" type="checkbox" checked>
+                                <label for="cb_certifications">Certifications</label>
+                            </div>
+                        </div>
+                        <div id="cv_part_drag_9" class="candrag main_column" draggable="true">
+                            <div id="cv_parts_languages" class="cv_parts_cb_style">
+                                <input id="cb_languages" name="cb_languages" type="checkbox" checked>
+                                <label for="cb_languages">Languages</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="cv_viewer">
+        <div id="cv_viewer_sidebar"></div>
+        <div id="cv_viewer_main"></div>
+    </div>
     
+    <script src="static/js/cvmaker.js"></script>
 </body>
 </html>

@@ -1,0 +1,116 @@
+body{
+    display: flex;
+    flex-direction: row;
+    background-color: #3376cd;
+    gap: 5%;
+}
+
+
+/***************************************
+*     CV parts chooser table style     *
+***************************************/
+
+#cv_parts_table {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    max-height: max-content;
+    border-style: ridge;
+    border-color: #505050;
+    border-width: 5px;    
+    
+}
+
+#cv_parts_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.cv_parts_table_header {
+    background-color: #404040;
+    width: 50%;
+    
+}
+
+.cv_parts_header_font {
+    justify-self: center;
+    text-align: center;
+    color: whitesmoke;
+    font-size: large;
+}
+
+#cv_parts_content {
+    display: flex;
+    flex-direction: row;
+    min-height: fit-content;
+}
+
+#cv_parts_content * {
+    width: 100%;
+    align-items: center;
+}
+
+#cv_parts_sidebar, #cv_parts_main {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+    background-color: #707070;
+}
+
+.sidebar_column, .main_column {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.sidebar_column:first-child, .main_column:first-child {
+    background-color: #404040;
+    border-bottom-style: ridge;
+    border-color: #505050;
+    border-width: 5px;
+    user-select: none;
+}
+
+.cv_parts_cb_style {
+    max-width: max-content;
+    height: 65%;
+    align-content: center;
+    justify-content: center;
+    background-color: azure;
+    padding-left: 2%;
+    padding-right: 2%;
+    border-style: solid;
+}
+
+.cv_parts_cb_style input {
+    max-width: min-content;
+}
+
+
+/***************************************
+*          CV Viewer style             *
+***************************************/
+
+#cv_viewer {
+    height: 297mm;
+    width: 210mm;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: row;
+}
+
+#cv_viewer_sidebar {
+    display: flex;
+    align-items: flex-end;
+    width: 30%;
+    background-color: #2e3d48;
+}
+
+#cv_viewer_main {
+    display: flex;
+    align-items: flex-end;
+    width: 70%;
+}
