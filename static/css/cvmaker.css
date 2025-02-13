@@ -1,6 +1,6 @@
 body{
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     background-color: #3376cd;
     gap: 5%;
 }
@@ -113,4 +113,53 @@ body{
     display: flex;
     align-items: flex-end;
     width: 70%;
+}
+
+#sidebar_content_holder, #main_content_holder {
+    display: flex;
+    width: 100%;
+    height: 95%;
+    flex-direction: column;
+    
+}
+
+.cv_viewer_parts {
+    flex: 1;
+    /*margin: 5px;*/
+    border-width: 2px;
+    border-style: dashed;
+    border-color: goldenrod;
+    box-sizing: content-box;
+    justify-items: center;
+    justify-content: center;
+}
+
+#cv_viewer_portrait_with_name {
+    flex: 0 1 auto;
+    display: flex;
+    height: max-content;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#cv_viewer_portrait {
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    height: 130px;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 15px;
+    border-color: #ffffff;
+    background-color: gray;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#cv_viewer_name {
+    width: 90%;
+    height: fit-content;
+    max-width: fit-content;
 }
