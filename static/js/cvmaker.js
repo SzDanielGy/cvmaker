@@ -1,9 +1,6 @@
 const cv_parts_draggable_items = document.querySelectorAll(".candrag"); // get all elements with candrag class
 const cv_parts_checkbox = document.querySelectorAll(".cv_parts_cb_style"); // get all element with cv_parts_cb_style class
 
-const cv_main = document.querySelectorAll(".cv_main");
-const cv_sidebar = document.querySelectorAll(".cv_sidebar");
-
 // create event handlers for all elements in cv_parts_draggable_items
 cv_parts_draggable_items.forEach(item => {
 
@@ -123,6 +120,7 @@ cv_parts_draggable_items.forEach(item => {
     });
 });
 
+
 document.getElementById("cv_parts_main").addEventListener("change", event => {
     if (event.target && event.target.type === "checkbox") {
         const checkbox = event.target;
@@ -134,6 +132,7 @@ document.getElementById("cv_parts_main").addEventListener("change", event => {
         }
     }
 });
+
 
 document.getElementById("cv_parts_sidebar").addEventListener("change", event => {
     if (event.target && event.target.type === "checkbox") {
@@ -151,3 +150,93 @@ document.getElementById("cv_parts_sidebar").addEventListener("change", event => 
         }
     }
 });
+
+
+const ui_button_minimalize = document.getElementById("cv_maker_ui_minimalizer");
+const ui_button_orientation = document.getElementById("cv_maker_ui_orientation");
+
+ui_button_minimalize.addEventListener("click", event => {
+    let button = ui_button_minimalize;
+    let currentState = button.getAttribute("data-state");
+    let ui_elements = document.getElementById("cv_properties").children;
+    let hidable_ui_elements = Array.from(ui_elements).slice(0,-1);
+
+    hidable_ui_elements.forEach(element => {
+        if (currentState == "maximized") {
+            button.setAttribute("data-state", "minimalized");
+            button.querySelector("p").innerText = "Maximize";
+            element.style.display = "none";
+            
+    
+        } 
+        else {
+            button.querySelector("p").innerText = "Minimalize";
+            button.setAttribute("data-state", "maximized");
+            element.style.display = "flex";
+        }
+    });
+});
+
+
+ui_button_orientation.addEventListener("click", event => {
+    let button = ui_button_orientation;
+    let orientation = document.body;
+    let currentState = button.getAttribute("data-state");
+
+        if (currentState == "right") {
+            button.setAttribute("data-state", "left");
+            button.querySelector("p").innerText = "Switch side (right)";
+            orientation.style.flexDirection = "row";
+
+        } 
+        else {
+            button.setAttribute("data-state", "right");
+            button.querySelector("p").innerText = "Switch side (left)";
+            orientation.style.flexDirection = "row-reverse";
+        }
+
+});
+
+
+const radio_sidebar_left = document.getElementById("sidebar_left");
+const radio_sidebar_right = document.getElementById("sidebar_right");
+const cv = document.getElementById("cv_viewer");
+
+radio_sidebar_left.addEventListener("click",function(){
+    cv.style.flexDirection = "row";
+});
+
+radio_sidebar_right.addEventListener("click",function(){
+    cv.style.flexDirection = "row-reverse";
+});
+
+const sidebar_color = document.getElementById("sidebar_color_input");
+const sidebar = document.getElementById("cv_viewer_sidebar");
+
+sidebar_color.addEventListener("input",function(){
+    sidebar.style.backgroundColor = sidebar_color.value;
+});
+
+
+const sidebar_font_frame_color = document.getElementById("sidebar_font_frame_color_input");
+const sidebar_fonts = document.getElementsByClassName("sidebar_font");
+
+sidebar_font_frame_color.addEventListener("input",function(){
+    picture_holder.style.borderColor = sidebar_font_frame_color.value; 
+    for (let text of sidebar_fonts) {
+        text.style.color = sidebar_font_frame_color.value;
+    }
+    
+});
+
+const portrait_picture = document.getElementById("sidebar_picture_input");
+const picture_holder = document.getElementById("cv_viewer_portrait");
+const picture_alt_text = document.getElementById("alt_picture");
+
+portrait_picture.addEventListener("input",function(){
+    picture_holder.style.backgroundImage = `url('${portrait_picture.value}')`;
+    picture_alt_text.innerHTML = "";
+
+});
+
+

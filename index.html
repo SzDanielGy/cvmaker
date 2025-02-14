@@ -9,6 +9,14 @@
 <body>
 
     <div id="cv_maker_ui">
+        <div id="cv_maker_ui_bar">
+            <button id="cv_maker_ui_orientation" data-state="right" >
+                <p class="ui_bar_font">Switch side (left)</p>
+            </button>
+            <button id="cv_maker_ui_minimalizer" data-state="maximized" >
+                <p class="ui_bar_font">Minimalize</p>
+            </button>
+        </div>
         <form id="cv_properties">
             <div id="cv_parts_table">
                 <div id="cv_parts_header">
@@ -24,8 +32,7 @@
                         <div class="sidebar_column">
                             <div id="cv_parts_portrait" class="cv_parts_cb_style">
                                 <input id="cb_portrait" name="cb_portrait" type="checkbox" checked>
-                                <label for="cb_portrait">With Picture <img src="" alt="locked"></label>
-                                
+                                <label for="cb_portrait">With Picture <img src="static/img/icons8-lock-30.png" alt="locked"></label>
                             </div>
                         </div>
                         <div id="cv_part_drag_1" class="candrag sidebar_column" draggable="true">
@@ -57,7 +64,7 @@
                         <div class="main_column">
                             <div id="cv_parts_introduction" class="cv_parts_cb_style">
                                 <input id="cb_introduction" name="cb_introduction" type="checkbox" checked>
-                                <label for="cb_introduction">Introduction <img src="" alt="locked"></label>
+                                <label for="cb_introduction">Introduction <img src="static/img/icons8-lock-30.png" alt="locked"> </label>
                                 
                             </div>
                         </div>
@@ -94,6 +101,36 @@
                     </div>
                 </div>
             </div>
+            <div id="sidebar_options">
+                <div id="sidebar_orientation">
+                    <label for="sidebar_orientation">Choose sidebar orientation:</label>
+                    <div id="sidebar_orientations_container">
+                        <input type="radio" id="sidebar_left" name="sidebar_orientation" checked>
+                        <label for="sidebar_left">Left</label>
+                        <input type="radio" id="sidebar_right" name="sidebar_orientation">
+                        <label for="sidebar_right">Right</label>
+                    </div>
+                </div>
+                <div id="sidebar_color">
+                    <label for="sidebar_color_input">Choose sidebar color:</label>
+                    <input type="color" id="sidebar_color_input" name="sidebar_color" value="#2e3d48">
+                </div>
+                <div id="sidebar_font_color">
+                    <label for="sidebar_font_frame_color_input">Choose sidebar font color and frame color:</label>
+                    <input type="color" id="sidebar_font_frame_color_input" name="sidebar_font_frame_color" value="#ffffff">
+                </div>
+                <div id="sidebar_picture">
+                    <label for="sidebar_picture_file">Choose your self portrait:</label>
+                    <input type="text" id="sidebar_picture_input" name="sidebar_picture_file" required>
+                </div>
+            </div>
+            <div id="input_json">
+                <label for="text_content_input">Give your cv information in json file:</label>
+                <input id="text_content_input" type="file" name="text_content_input_file" required>
+            </div>
+            <div id="create_cv">
+                <button type="submit">Print CV</button>
+            </div>
         </form>
     </div>
 
@@ -101,8 +138,10 @@
         <div id="cv_viewer_sidebar">
             <div id="sidebar_content_holder">
                 <div id="cv_viewer_portrait_with_name" class="cv_viewer_parts cv_sidebar">
-                    <div id="cv_viewer_portrait"></div>
-                    <p id="cv_viewer_name">c</p>
+                    <div id="cv_viewer_portrait">
+                        <p class="sidebar_font" id="alt_picture">Your Picture here</p>
+                    </div>
+                    <p id="cv_viewer_name" class="cv_viewer_font sidebar_font">Your name here</p>
                 </div>
                 <div id="cv_viewer_contact" class="cv_viewer_parts cv_sidebar"></div>
                 <div id="cv_viewer_t_skills" class="cv_viewer_parts cv_sidebar"></div>

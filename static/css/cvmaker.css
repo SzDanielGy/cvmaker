@@ -1,8 +1,115 @@
-body{
+body {
     display: flex;
     flex-direction: row-reverse;
-    background-color: #3376cd;
+    background-color: #101010;/*#3376cd;*/
     gap: 5%;
+}
+
+input[type="radio"] {
+    transform: scale(1.5);
+}
+
+input[type="checkbox"] { 
+    transform: scale(1.25); 
+}
+
+/***************************************
+*          CV UI maker style           *
+***************************************/
+
+#cv_maker_ui {
+    min-width: 450px;
+    padding: 1%;
+    background-color: #202020;
+    border-radius: 50px;
+    height: max-content;
+    width: max-content;
+}
+
+#cv_maker_ui input, #cv_maker_ui button, #cv_maker_ui label{
+    font-size: larger;
+}
+
+#cv_properties > div {
+    gap: 5%;
+    margin-bottom: 5%;
+    justify-self: center;
+}
+
+#cv_properties > :not(:first-child){
+    color: whitesmoke;
+    font-size: large;
+}
+
+/***************************************
+*         CV UI maker menu bar         *
+***************************************/
+
+#cv_maker_ui_bar {
+    display: flex;
+    background-color: #404040;
+    gap: 10%;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+
+#cv_maker_ui_bar button{
+    height: 60px;
+    width: 40%;
+    gap: 10%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    border-radius: 20px;
+    border-style: solid;
+    background-color: #707070;
+}
+
+#cv_maker_ui_bar button:active{
+    background-color: #505050;
+}
+
+
+/***************************************
+*      CV UI maker item's style        *
+***************************************/
+
+#sidebar_options, #input_json {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    background-color: #707070;
+    border-style: ridge;
+    border-color: #505050;
+    border-width: 5px;
+    box-sizing: border-box;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#sidebar_options > div , #input_json *{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.5%;
+    align-items: center;
+}
+
+#sidebar_options :first-child, #input_json :first-child {
+    padding-top: 1.5%;
+}
+
+#sidebar_options input[type="color"] {
+    height: 35px;
+    width: 70px;
+}
+
+#create_cv {
+    padding: 2%;
+    background-color: #707070;
+    border-style: ridge;
+    border-color: #505050;
+    border-width: 5px;
 }
 
 
@@ -17,8 +124,8 @@ body{
     max-height: max-content;
     border-style: ridge;
     border-color: #505050;
-    border-width: 5px;    
-    
+    border-width: 5px;
+    box-sizing: border-box;
 }
 
 #cv_parts_header {
@@ -67,6 +174,8 @@ body{
 }
 
 .sidebar_column:first-child, .main_column:first-child {
+    display: flex;
+    flex-direction: row;
     background-color: #404040;
     border-bottom-style: ridge;
     border-color: #505050;
@@ -89,6 +198,20 @@ body{
     max-width: min-content;
 }
 
+#cv_parts_portrait, #cv_parts_portrait label{
+ display: flex;
+ flex-direction: row;
+}
+
+#cv_parts_introduction, #cv_parts_introduction label{
+    display: flex;
+    flex-direction: row;
+   }
+   
+#cv_parts_introduction img, #cv_parts_portrait img {
+    transform: scale(.75);
+    width: auto;
+}
 
 /***************************************
 *          CV Viewer style             *
@@ -128,7 +251,7 @@ body{
     /*margin: 5px;*/
     border-width: 2px;
     border-style: dashed;
-    border-color: goldenrod;
+    border-color: color-mix(in srgb, #ffffff 25%, #2e3d48);
     box-sizing: content-box;
     justify-items: center;
     justify-content: center;
@@ -148,11 +271,13 @@ body{
     flex-direction: column;
     width: 120px;
     height: 130px;
+    justify-content: center;
+    align-items: center;
     border-width: 3px;
     border-style: solid;
     border-radius: 15px;
     border-color: #ffffff;
-    background-color: gray;
+    background-color: #707070;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -162,4 +287,9 @@ body{
     width: 90%;
     height: fit-content;
     max-width: fit-content;
+}
+
+.cv_viewer_font {
+    color: white;
+    font-size: larger;
 }
