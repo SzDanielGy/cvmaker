@@ -13,6 +13,10 @@ input[type="checkbox"] {
     transform: scale(1.25); 
 }
 
+a, a:hover, a:visited, a:active {
+    color: inherit;
+   }
+
 /***************************************
 *          CV UI maker style           *
 ***************************************/
@@ -144,7 +148,7 @@ input[type="checkbox"] {
     justify-self: center;
     text-align: center;
     color: whitesmoke;
-    font-size: large;
+    font-size: larger;
 }
 
 #cv_parts_content {
@@ -217,6 +221,10 @@ input[type="checkbox"] {
 *          CV Viewer style             *
 ***************************************/
 
+.cv_sidebar {
+    color: #ffffff;
+}
+
 #cv_viewer {
     height: 297mm;
     width: 210mm;
@@ -226,39 +234,47 @@ input[type="checkbox"] {
 }
 
 #cv_viewer_sidebar {
-    display: flex;
+    display: inline-flex;
+    min-height: 100%;
     align-items: flex-end;
-    width: 30%;
+    width: 35%;
     background-color: #2e3d48;
 }
 
 #cv_viewer_main {
-    display: flex;
+    display: inline-flex;
+    min-height: 100%;
     align-items: flex-end;
     width: 70%;
 }
 
 #sidebar_content_holder, #main_content_holder {
-    display: flex;
+    display: inline-flex;
     width: 100%;
-    height: 95%;
+    min-height: 95%;
     flex-direction: column;
     
 }
 
 .cv_viewer_parts {
+    display: flex;
     flex: 1;
+    flex-direction: column;
     /*margin: 5px;*/
     border-width: 2px;
     border-style: dashed;
     border-color: color-mix(in srgb, #ffffff 25%, #2e3d48);
     box-sizing: content-box;
+    align-items: center;
+    justify-content: center;
+    /*
     justify-items: center;
     justify-content: center;
+    */
 }
 
 #cv_viewer_portrait_with_name {
-    flex: 0 1 auto;
+    
     display: flex;
     height: max-content;
     flex-direction: column;
@@ -289,7 +305,201 @@ input[type="checkbox"] {
     max-width: fit-content;
 }
 
-.cv_viewer_font {
-    color: white;
-    font-size: larger;
+/***************************************
+*          CV Final style              *
+***************************************/
+
+.cv_viewer_parts * {
+    margin: 0;
+    padding: 0;
+    gap: 0;
+}
+
+
+#cv_viewer_name {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#cv_viewer_contact {
+    align-items: flex-start;
+    position: relative;
+    min-height: 300px;
+}
+
+#cv_viewer_contact > *{
+    position: absolute;
+}
+
+#cv_viewer_contact > :first-child {
+    margin-top: 20px;
+}
+
+
+#cv_viewer_contact > :first-child,
+#cv_viewer_t_skills > :first-child,
+#cv_viewer_s_skills > :first-child,
+#cv_viewer_hobbies > :first-child,
+#cv_viewer_introduction > :first-child,
+#cv_viewer_experiences > :first-child,
+#cv_viewer_projects > :first-child,
+#cv_viewer_schools > :first-child,
+#cv_viewer_certifications > :first-child,
+#cv_viewer_languages > :first-child {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#cv_viewer_contact > :not(:first-child) {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+
+}
+
+#cv_viewer_contact > div > :first-child{
+    align-items: center;
+    justify-items: center;
+    width: 63.75px;
+    height: 63.75px;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+}
+
+#cv_viewer_contact > div > :first-child *{
+    align-items: center;
+    justify-items: center;
+    width: 63.75px;
+    height: 63.75px;
+}
+
+#cv_viewer_contact > :nth-child(1) { top: 0;}
+#cv_viewer_contact > :nth-child(2) { top: 40px;}
+#cv_viewer_contact > :nth-child(3) { top: 80px;}
+#cv_viewer_contact > :nth-child(4) { top: 120px;}
+#cv_viewer_contact > :nth-child(5) { top: 160px;}
+#cv_viewer_contact > :nth-child(6) { top: 200px;}
+#cv_viewer_contact > :nth-child(7) { top: 240px;}
+#cv_viewer_contact > :nth-child(8) { top: 280px;}
+
+#cv_viewer_t_skills,
+#cv_viewer_s_skills,
+#cv_viewer_hobbies,
+#cv_viewer_introduction,
+#cv_viewer_experiences,
+#cv_viewer_projects,
+#cv_viewer_schools,
+#cv_viewer_certifications,
+#cv_viewer_languages {
+    align-items: flex-start;
+}
+
+#cv_viewer_t_skills > :first-child,
+#cv_viewer_s_skills > :first-child,
+#cv_viewer_hobbies > :first-child {
+    margin-top: 0;
+}
+
+#t_skills,
+#s_skills,
+#hobbies{
+    margin-left: 50px;
+}
+
+#t_skills * ,
+#s_skills *,
+#hobbies *{
+    font-size: 20px;
+}
+
+#cv_viewer_introduction > :nth-child(2){
+    font-size: 18px;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-align: justify;
+    text-indent: 20px;
+}
+
+#cv_viewer_experiences > div,
+#cv_viewer_projects > div,
+#cv_viewer_schools > div{
+    margin-left: 40px;
+    margin-right: 20px;
+}
+
+#cv_viewer_experiences > div > p,
+#cv_viewer_projets > div > p {
+    font-size: 20px;
+}
+
+#cv_viewer_experiences > div > :first-child,
+#cv_viewer_projets > div > :first-child{
+    font-weight: bold;
+}
+
+#cv_viewer_experiences > div > :last-child,
+#cv_viewer_projets > div > :last-child {
+    margin-bottom: 10px;
+}
+
+#cv_viewer_experiences > div > :nth-child(2),
+#cv_viewer_projets > div > :nth-child(2) {
+    font-style: italic;
+    text-indent: 10px;
+}
+
+#cv_viewer_experiences > div > ul,
+#cv_viewer_projets > div > ul {
+    font-style: italic;
+    margin-left: 50px;
+    font-size: 18px;
+}
+
+#cv_viewer_schools > div > :first-child {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#cv_viewer_schools > div > :last-child {
+    font-style: italic;
+    font-size: 20px;
+    text-indent: 10px;
+}
+
+#certifications,
+#languages {
+    margin-left: 60px;
+    font-size: 18px;
+}
+
+/******************/
+@media print{
+    body {
+        margin: 0;
+        gap: 0;
+        padding: 0;
+
+        -webkit-print-color-adjust: exact; /* Chrome/Edge */
+        print-color-adjust: exact; /* Firefox */
+
+        
+    }
+    #cv_maker_ui {
+        display: none;
+    }
+    #cv_viewer {
+        width: 210mm;
+        height: 297mm;
+        
+    }
+
+    .cv_viewer_parts {
+        border: 0; 
+    }
 }

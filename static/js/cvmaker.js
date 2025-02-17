@@ -1,5 +1,23 @@
 const cv_parts_draggable_items = document.querySelectorAll(".candrag"); // get all elements with candrag class
 const cv_parts_checkbox = document.querySelectorAll(".cv_parts_cb_style"); // get all element with cv_parts_cb_style class
+const sidebar_font_frame_color = document.getElementById("sidebar_font_frame_color_input");
+const sidebar_fonts = document.getElementsByClassName("cv_sidebar");
+const main_fonts = document.getElementsByClassName("cv_main");
+const cv_viewer_main = document.getElementById("main_content_holder");
+const cv_viewer_sidebar = document.getElementById("sidebar_content_holder");
+const cv_viewer_contact = document.getElementById("cv_viewer_contact");
+
+
+function svgColorChanger(color){
+    let svgs = document.querySelectorAll(".svg-image");
+    svgs.forEach(element => {
+        var svgDoc = element.contentDocument;
+        var paths = svgDoc.querySelectorAll("path");
+        paths.forEach(path => {
+            path.setAttribute("fill", color);
+        });
+    });
+}
 
 // create event handlers for all elements in cv_parts_draggable_items
 cv_parts_draggable_items.forEach(item => {
@@ -29,8 +47,7 @@ cv_parts_draggable_items.forEach(item => {
         const draggedItem = document.getElementById(draggedItemId);
         const main_column = document.getElementById("cv_parts_main");
         const sidebar_column = document.getElementById("cv_parts_sidebar");
-        const cv_viewer_main = document.getElementById("main_content_holder");
-        const cv_viewer_sidebar = document.getElementById("sidebar_content_holder");
+        
         
         // allow switching the elements in rows and columns
         if (draggedItem.classList.contains("main_column")){
@@ -43,26 +60,27 @@ cv_parts_draggable_items.forEach(item => {
                 let targetItemIndex = Array.from(sidebar_column.children).indexOf(event.target);
                 cv_viewer_item.classList.remove("cv_main");
                 cv_viewer_item.classList.add("cv_sidebar");
+                cv_viewer_item.style.color = sidebar_font_frame_color.value;
                 cv_viewer_sidebar.insertBefore(cv_viewer_item,cv_viewer_sidebar.children[targetItemIndex]);
                 
                 draggedItem.classList.remove("main_column");
                 draggedItem.classList.add("sidebar_column");
                 sidebar_column.insertBefore(draggedItem,event.currentTarget);
                 
-                
             }
             else if (event.target == sidebar_column){
-
+                
                 cv_viewer_item.classList.remove("cv_main");
                 cv_viewer_item.classList.add("cv_sidebar");
                 cv_viewer_sidebar.appendChild(cv_viewer_item);
-
+                cv_viewer_item.style.color = sidebar_font_frame_color.value;
+                
                 draggedItem.classList.remove("main_column");
                 draggedItem.classList.add("sidebar_column");
                 sidebar_column.appendChild(draggedItem);
             }
             else if (event.target == main_column){
-
+                
                 cv_viewer_main.appendChild(cv_viewer_item);
                 
                 main_column.appendChild(draggedItem);
@@ -71,7 +89,7 @@ cv_parts_draggable_items.forEach(item => {
 
                 let targetItemIndex = Array.from(main_column.children).indexOf(event.target);
                 cv_viewer_main.insertBefore(cv_viewer_item,cv_viewer_main.children[targetItemIndex]);
-
+                
                 main_column.insertBefore(draggedItem,event.currentTarget);
             }
         }
@@ -79,17 +97,19 @@ cv_parts_draggable_items.forEach(item => {
 
             let draggedItemIndex = Array.from(sidebar_column.children).indexOf(draggedItem);
             let cv_viewer_item = document.getElementsByClassName("cv_sidebar")[draggedItemIndex];
-
+            
             if (event.target.classList.contains("main_column")){
                 
                 let targetItemIndex = Array.from(main_column.children).indexOf(event.target);
                 cv_viewer_item.classList.remove("cv_sidebar");
                 cv_viewer_item.classList.add("cv_main");
+                cv_viewer_item.style.color = "black";
                 cv_viewer_main.insertBefore(cv_viewer_item,cv_viewer_main.children[targetItemIndex]);
                 
                 draggedItem.classList.remove("sidebar_column");
                 draggedItem.classList.add("main_column");
                 main_column.insertBefore(draggedItem,event.currentTarget);
+                
             }
             else if (event.target == main_column){
                 
@@ -111,6 +131,7 @@ cv_parts_draggable_items.forEach(item => {
                 
                 let targetItemIndex = Array.from(sidebar_column.children).indexOf(event.target);
                 cv_viewer_sidebar.insertBefore(cv_viewer_item,cv_viewer_sidebar.children[targetItemIndex]);
+                cv_viewer_item.style.color = "black";
                 
                 sidebar_column.insertBefore(draggedItem,event.currentTarget);
             }
@@ -217,16 +238,19 @@ sidebar_color.addEventListener("input",function(){
     sidebar.style.backgroundColor = sidebar_color.value;
 });
 
-
-const sidebar_font_frame_color = document.getElementById("sidebar_font_frame_color_input");
-const sidebar_fonts = document.getElementsByClassName("sidebar_font");
+function changeSidebarFontColor(color){
+    picture_holder.style.borderColor = color.value;
+    for (let text of sidebar_fonts) {
+        text.style.color = color.value;
+        text.style.setProperty("--markercolor",color.value);
+    }
+}
 
 sidebar_font_frame_color.addEventListener("input",function(){
-    picture_holder.style.borderColor = sidebar_font_frame_color.value; 
-    for (let text of sidebar_fonts) {
-        text.style.color = sidebar_font_frame_color.value;
+    if (document.getElementById("cv_viewer_contact").classList.contains("cv_sidebar")){
+        svgColorChanger(sidebar_font_frame_color.value);
     }
-    
+    changeSidebarFontColor(sidebar_font_frame_color);
 });
 
 const portrait_picture = document.getElementById("sidebar_picture_input");
@@ -239,4 +263,164 @@ portrait_picture.addEventListener("input",function(){
 
 });
 
+let jsonfile = document.getElementById("text_content_input");
 
+function nameToCV(data){
+    cv_name = document.getElementById("cv_viewer_name");
+    cv_name.innerHTML = data.name;
+}
+
+function simpleListToCV(data,type,jsonType){
+    let element_types = document.getElementById(type);
+    let title = document.createElement("p");
+    title.innerHTML = data[jsonType].name;
+    title.style.alignContent = "left";
+    element_types.parentElement.insertBefore(title,element_types);
+    data[jsonType].values.forEach(item => {
+        let ul_element = document.createElement("li");
+        let p_element = document.createElement("p");
+        p_element.innerText = item;
+        ul_element.appendChild(p_element);
+        element_types.appendChild(ul_element);
+    })
+}
+
+function introductionToCV(data,type,jsonType){
+    let element_types = document.getElementById(type);
+    let title = document.createElement("p");
+    title.innerHTML = data[jsonType].name;
+    title.style.alignContent = "left";
+    element_types.appendChild(title);
+    let p_element = document.createElement("p");
+    element_types.appendChild(p_element);
+    data[jsonType].sentences.forEach(item => {
+        p_element.textContent += item;
+    })
+}
+
+function expOrprojectToCV(data,type,jsonType){
+    let element_types = document.getElementById(type);
+    let title = document.createElement("p");
+    title.innerHTML = data[jsonType].name;
+    element_types.appendChild(title);
+    data[jsonType][jsonType].forEach(element => {
+        let content = document.createElement("div");
+        let job_title = document.createElement("p");
+        job_title.innerHTML = element.job_title;
+        let date = document.createElement("p");
+        date.innerHTML = element.date;
+        let sentences = document.createElement("ul");
+        content.append(job_title,date,sentences);
+        element_types.append(content);
+        element.sentences.forEach(sentence => {
+            let ul_element = document.createElement("li");
+            let p_element = document.createElement("p");
+            p_element.innerText = sentence;
+            ul_element.appendChild(p_element);
+            sentences.appendChild(ul_element);
+        });
+    });
+}
+
+function schoolToCV(data,type,jsonType){
+    let element_types = document.getElementById(type);
+    let title = document.createElement("p");
+    title.innerHTML = data[jsonType].name;
+    element_types.appendChild(title);
+    data[jsonType].schools.forEach(element => {
+        let content = document.createElement("div");
+        let name = document.createElement("p");
+        name.innerHTML = element.name;
+        let date = document.createElement("p");
+        date.innerHTML = element.date;
+        content.append(name,date);
+        element_types.append(content);
+    });
+}
+
+function simpleListWithLinkToCV(data,type,jsonType){
+    let element_types = document.getElementById(type);
+    let title = document.createElement("p");
+    title.innerHTML = data[jsonType].name;
+    title.style.alignContent = "left";
+    element_types.parentElement.insertBefore(title,element_types);
+    data[jsonType][jsonType].forEach(item => {
+        let ul_element = document.createElement("li");
+        let ulr_element = document.createElement("a");
+        ulr_element.href = item.link;
+        ulr_element.innerText = item.name;
+        ul_element.appendChild(ulr_element);
+        element_types.appendChild(ul_element);
+    })
+}
+
+function createContactElement(element_parent,picture_url,element){
+    let main_div = document.createElement("div");
+    let img_holder = document.createElement("div");
+    let text_holder = document.createElement("div");
+    main_div.append(img_holder,text_holder);
+    let img = document.createElement("object");
+    img.setAttribute("class","svg-image");
+    img.setAttribute("type","image/svg+xml");
+    img.setAttribute("data",picture_url);
+    img.style.transform = "scale(0.65)";
+    img_holder.append(img);
+    let p = document.createElement("p");
+    p.innerHTML = element;
+    text_holder.append(p);
+    element_parent.append(main_div);
+}
+
+function createContactElementWithLink(element_parent,picture_url,element){
+    let main_div = document.createElement("div");
+    let img_holder = document.createElement("div");
+    let text_holder = document.createElement("div");
+    main_div.append(img_holder,text_holder);
+    let img = document.createElement("object");
+    img.setAttribute("class","svg-image");
+    img.setAttribute("type","image/svg+xml");
+    img.setAttribute("data",picture_url);
+    img.style.transform = "scale(0.65)";
+    img_holder.append(img);
+    let a = document.createElement("a");
+    a.innerHTML = element.title;
+    a.setAttribute("href",element.link);
+    text_holder.append(a);
+    element_parent.append(main_div);
+}
+
+function contactToCV(data,type,jsonType){
+    let element_parent = document.getElementById(type);
+    let p = document.createElement("p");
+    p.innerHTML = data[jsonType].name;
+    element_parent.append(p);
+    data[jsonType].address.forEach(element => {
+        createContactElement(element_parent,"static/img/home.svg",element);
+    });
+    createContactElementWithLink(element_parent,"static/img/email.svg",data[jsonType].email);
+    createContactElement(element_parent,"static/img/phone.svg",data[jsonType].phone);
+    createContactElementWithLink(element_parent,"static/img/linkedin.svg",data[jsonType].linkedin);
+    createContactElementWithLink(element_parent,"static/img/github.svg",data[jsonType].github);
+}
+
+function dataToCV(data){
+    nameToCV(data);
+    contactToCV(data,"cv_viewer_contact","contact");
+    simpleListToCV(data,"t_skills","technical_skills");
+    simpleListToCV(data,"s_skills","soft_skills");
+    simpleListToCV(data, "hobbies","hobbies");
+    simpleListToCV(data, "languages","languages");
+    introductionToCV(data,"cv_viewer_introduction","introduction");
+    expOrprojectToCV(data,"cv_viewer_experiences","experiences");
+    expOrprojectToCV(data,"cv_viewer_projects","projects");
+    schoolToCV(data,"cv_viewer_schools","education");
+    simpleListWithLinkToCV(data,"certifications","certifications");
+}
+
+jsonfile.addEventListener("change", event => {
+    var reader = new FileReader();
+    reader.onload = function() {
+        dataToCV(JSON.parse(reader.result));
+    };
+    reader.readAsText(event.target.files[0]);
+});

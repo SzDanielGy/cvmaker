@@ -7,7 +7,6 @@
     <title>CV maker 1.0</title>
 </head>
 <body>
-
     <div id="cv_maker_ui">
         <div id="cv_maker_ui_bar">
             <button id="cv_maker_ui_orientation" data-state="right" >
@@ -17,7 +16,7 @@
                 <p class="ui_bar_font">Minimalize</p>
             </button>
         </div>
-        <form id="cv_properties">
+        <form id="cv_properties" onsubmit="window.print()">
             <div id="cv_parts_table">
                 <div id="cv_parts_header">
                     <div id="sidebar_header" class="cv_parts_table_header">
@@ -32,7 +31,7 @@
                         <div class="sidebar_column">
                             <div id="cv_parts_portrait" class="cv_parts_cb_style">
                                 <input id="cb_portrait" name="cb_portrait" type="checkbox" checked>
-                                <label for="cb_portrait">With Picture <img src="static/img/icons8-lock-30.png" alt="locked"></label>
+                                <label for="cb_portrait">With Picture <img src="static/img/lock.png" alt="locked"></label>
                             </div>
                         </div>
                         <div id="cv_part_drag_1" class="candrag sidebar_column" draggable="true">
@@ -64,7 +63,7 @@
                         <div class="main_column">
                             <div id="cv_parts_introduction" class="cv_parts_cb_style">
                                 <input id="cb_introduction" name="cb_introduction" type="checkbox" checked>
-                                <label for="cb_introduction">Introduction <img src="static/img/icons8-lock-30.png" alt="locked"> </label>
+                                <label for="cb_introduction">Introduction <img src="static/img/lock.png" alt="locked"> </label>
                                 
                             </div>
                         </div>
@@ -129,7 +128,7 @@
                 <input id="text_content_input" type="file" name="text_content_input_file" required>
             </div>
             <div id="create_cv">
-                <button type="submit">Print CV</button>
+                <button id="submit_button" type="submit">Print CV</button>
             </div>
         </form>
     </div>
@@ -144,9 +143,15 @@
                     <p id="cv_viewer_name" class="cv_viewer_font sidebar_font">Your name here</p>
                 </div>
                 <div id="cv_viewer_contact" class="cv_viewer_parts cv_sidebar"></div>
-                <div id="cv_viewer_t_skills" class="cv_viewer_parts cv_sidebar"></div>
-                <div id="cv_viewer_s_skills" class="cv_viewer_parts cv_sidebar"></div>
-                <div id="cv_viewer_hobbies" class="cv_viewer_parts cv_sidebar"></div>
+                <div id="cv_viewer_t_skills" class="cv_viewer_parts cv_sidebar">
+                    <ul id="t_skills"></ul>
+                </div>
+                <div id="cv_viewer_s_skills" class="cv_viewer_parts cv_sidebar">
+                    <ul id="s_skills"></ul>
+                </div>
+                <div id="cv_viewer_hobbies" class="cv_viewer_parts cv_sidebar">
+                    <ul id="hobbies"></ul>
+                </div>
             </div>
         </div>
         <div id="cv_viewer_main">
@@ -155,8 +160,12 @@
                 <div id="cv_viewer_experiences" class="cv_viewer_parts cv_main"></div>
                 <div id="cv_viewer_projects" class="cv_viewer_parts cv_main"></div>
                 <div id="cv_viewer_schools" class="cv_viewer_parts cv_main"></div>
-                <div id="cv_viewer_certifications" class="cv_viewer_parts cv_main"></div>
-                <div id="cv_viewer_languages" class="cv_viewer_parts cv_main"></div>
+                <div id="cv_viewer_certifications" class="cv_viewer_parts cv_main">
+                    <ul id="certifications"></ul>
+                </div>
+                <div id="cv_viewer_languages" class="cv_viewer_parts cv_main">
+                    <ul id="languages"></ul>
+                </div>
             </div>
         </div>
     </div>
